@@ -6,7 +6,7 @@
 
 ## 具体介绍
 
-### 1、创建 react 应用
+### 1、基础配置部分
 
 1. 使用 create-react-app 创建一个 react 项目；
 
@@ -58,3 +58,48 @@ yarn add babel-plugin-import
 ```
 
 此处还有其他配置方式，可自行百度。
+
+5. 配置less语言
+
+```
+yarn add less less-loader
+```
+
+在 webpack.config.js 模仿sass配置
+
+```
+const lessRegex = /\.(less)$/;
+const lessModuleRegex = /\.module\.(less)$/;
+
+...
+{
+    test: lessRegex,
+    exclude: sassModuleRegex,
+    use: getStyleLoaders(
+    {
+        importLoaders: 2,
+        sourceMap: isEnvProduction
+        ? shouldUseSourceMap
+        : isEnvDevelopment,
+    },
+    'less-loader'
+    ),
+    sideEffects: true,
+},
+{
+    test: lessModuleRegex,
+    use: getStyleLoaders(
+    {
+        importLoaders: 2,
+        sourceMap: isEnvProduction
+        ? shouldUseSourceMap
+        : isEnvDevelopment,
+        modules: true,
+        getLocalIdent: getCSSModuleLocalIdent,
+    },
+    'less-loader'
+    ),
+},
+...
+
+```
