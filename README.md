@@ -59,7 +59,7 @@ yarn add babel-plugin-import
 
 此处还有其他配置方式，可自行百度。
 
-5. 配置less语言
+5. 配置less
 
 ```
 yarn add less less-loader
@@ -102,4 +102,42 @@ const lessModuleRegex = /\.module\.(less)$/;
 },
 ...
 
+```
+
+### 2、基础逻辑部分
+
+1. 封装axios请求，代码参见```src/util/request.js```
+
+2. 使用express搭建一个简单的node服务器
+
+在当前项目目录下：
+
+```
+mkdir server
+cd server
+npm init
+(...一系列配置)
+npm install express --save
+```
+
+也可以使用Express 应用程序生成器快速创建一个应用的骨架。
+
+```
+npm install express-generator -g
+express --view=pug server
+```
+
+这里我在本地做了一个nginx代理，例如react项目启动端口是3000，express后台项目端口是8000，访问的时候访问端口9000，配置如下
+
+```
+server {
+  listen 9000;
+  server_name localhost;
+  location /api/ {
+          proxy_pass http://localhost:8000/;
+  }
+  location / {
+          proxy_pass http://localhost:3000/;
+  }
+}
 ```
