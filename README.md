@@ -30,3 +30,31 @@ yarn eject
 ```
 yarn add antd axios redux redux-saga react-router-dom
 ```
+
+4. 按需引用antd
+
+```
+yarn add babel-plugin-import
+```
+
+在package.json中配置
+
+```
+"babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "es",
+          "style": "css"
+        }
+      ]
+    ]
+  }
+```
+
+此处还有其他配置方式，可自行百度。
