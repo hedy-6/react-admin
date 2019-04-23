@@ -164,3 +164,39 @@ sagaMiddleware.run(saga)
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 ```
+
+4. 使用 react-router-dom react-loadable(懒加载)
+
+```
+import React from 'react';
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import MyLoadable from '@/router/routeLoadle'
+import App from '../App';
+import NotFound from '@/pages/404/index';
+
+const RouterApp = () => {
+  return (
+    <HashRouter>
+      <Switch>
+        <Route path="/login" exact component={MyLoadable({loader: ()=>import('@/pages/login')})} />
+        <Route path="/" exact render={() => <Redirect to="/main" />} />
+        <Route path="/main" render={() =>
+          <App></App>
+        }>
+        </Route>
+        <Route path="/404" component={NotFound} />
+        <Redirect to="/404" />
+      </Switch>
+    </HashRouter>
+  );
+}
+
+export default RouterApp;
+```
+  注： 
+  1. src/index.js 中此时用RouterApp替代App；
+  2. RouterApp主要渲染的是与用户权限非相关路由；与用户路由相关联的在App.js中渲染；
+  3. MyLoadable使用了react-loadable插件；
+
+关于路由：
+当进入App.js的时候，根据state先判断用户是否已经登陆，若没有登陆先查看cookie，验证用户信息，验证失败跳转到登陆页面；若无cookie直接登陆。用户登陆完成后，获取全部路由信息。用户信息中根据assets字段（存放的是用户有权限的路由id集合），找到对应用户权限的路由列表，渲染。由于是动态渲染路由，路由中的path字段，就是对应路由页面的位置，此处稍微注意。另：像一些路由后面动态传参的，如:id，在渲染的时候解析成$id。
