@@ -24,11 +24,11 @@ yarn eject
 
 - antd —— UI框架；
 - axios —— 请求；
-- redux, redux-saga —— 状态管理
+- redux, react-redux, redux-saga —— 状态管理
 - react-router-dom —— 路由管理
 
 ```
-yarn add antd axios redux redux-saga react-router-dom
+yarn add antd axios redux react-redux redux-saga react-router-dom
 ```
 
 4. 按需引用antd
@@ -140,4 +140,27 @@ server {
           proxy_pass http://localhost:3000/;
   }
 }
+```
+
+3. 使用 redux react-redux redux-saga
+
+```
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './reducers'
+import saga from './sagas'
+import App from './App';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(rootReducer, composeEnhancers(
+    applyMiddleware(sagaMiddleware)));
+
+sagaMiddleware.run(saga)
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 ```
