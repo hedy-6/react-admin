@@ -28,33 +28,16 @@ axios.interceptors.response.use(
     }
 );
 
-export default {
-    post({ url, data, config = {} }) {
-        return axios({
-            method: 'post',
-            url,
-            data: qs.stringify(data),
-            ...config
-        }).then(
-            response => {
-                return response;
-            }
-        ).catch(error => {
-            return error;
-        });
-    },
-    get({ url, params, config }) {
-        return axios({
-            method: 'get',
-            url,
-            params,
-            ...config
-        }).then(
-            response => {
-                return response;
-            }
-        ).catch(error => {
-            return error;
-        });
+export default (options => {
+    let { method = 'get', data = {} } = options;
+    if (method === 'post') {
+        options.data = qs.stringify(data);
     }
-}
+    return axios(options).then(
+        response => {
+            return response;
+        }
+    ).catch(error => {
+        return error;
+    });
+})
