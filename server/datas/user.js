@@ -5,7 +5,7 @@ const userList = [
         email: 'admin@office.com',
         password: '123456',
         avatar: 'https://hbimg.huabanimg.com/655ba5b31bc6243428a306b10a7f895b36d3d3d35a1e-5phgk4_fw658',
-        assets: [1, 2, 21, 22, 23, 22, 3, 31]
+        assets: [1, 2, 21, 211, 212, 213, 22, 23, 22, 3, 31]
     },
     {
         id: 1,
@@ -13,7 +13,7 @@ const userList = [
         email: 'sale@office.com',
         password: '123456',
         avatar: 'https://hbimg.huabanimg.com/739f5433bc08cdf1166126efa61b16afb6bbae462859f-9cyqyj_fw658',
-        assets: [1, 2, 21, 22, 23, 22]
+        assets: [1, 2, 21, 211, 212, 213, 22, 23, 22]
     },
     {
         id: 2,
