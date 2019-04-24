@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Redirect, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { message } from 'antd';
 import MyLoadable from '@/router/routeLoadle'
 import { getCookie, setCookie, clearCookie } from '@/util/cookie'
 import { FETCH_REQUEST, LOGIN_SUCCESS, LOGIN_FAIL, INIT_ROUTES, LOGIN_OUT } from '@/actions/ActionTypes'
 import { getOwnRoute } from './util';
 import Layout from '@/containers/layout'
+import NotFound from '@/pages/404/index';
 
 const renderRoute = (route) => {
   if (route.children) {
@@ -33,7 +34,7 @@ class App extends Component {
           password
         }
       }).then(data => {
-        if (data.status === 'OK') {
+        if (data && data.status === 'OK') {
           this.props.loginSuccess(data.userInfo)
           setCookie({ email, password })
           this.getRoutes();
@@ -59,7 +60,7 @@ class App extends Component {
       method: 'get',
     }).then(data => {
       console.log(data)
-      if (data.status === 'OK') {
+      if (data && data.status === 'OK') {
         let ownRoutes = getOwnRoute(data.routes, this.props.user.data.assets);
         this.props.initRoutes(ownRoutes);
       } else {
@@ -86,7 +87,7 @@ class App extends Component {
             {
               routes.map(route => renderRoute(route))
             }
-            <Redirect to="/main/dashboard" />
+            <Route component={NotFound} />
           </Switch>
         </Layout>
       </div>
