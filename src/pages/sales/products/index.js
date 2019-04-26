@@ -173,4 +173,4 @@ class Products extends Component {
     }
 }
 
-export default Form.create({ name: 'selectForm' })(Products);
+export default Products;

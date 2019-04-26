@@ -31,4 +31,23 @@ const products = [
     },
 ]
 
-module.exports = products;
+const categories = [
+    {
+        id: 1,
+        name: '油炸食品',
+        description: '方便面，薯片等'
+    },
+    {
+        id: 2,
+        name: '健康饮品',
+        description: '牛奶，果汁等'
+
+    },
+    {
+        id: 3,
+        name: '糖果甜食',
+        description: '糖果，巧克力'
+    },
+]
+
+module.exports = { products, categories };

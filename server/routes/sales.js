@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var products = require('../datas/sales');
+var products = require('../datas/sales').products;
+var categories = require('../datas/sales').categories;
 
 router.get('/products/list', function (req, res, next) {
     try {
@@ -20,6 +21,17 @@ router.get('/product/detail', function (req, res, next) {
         res.json({
             status: 'OK',
             data: data
+        })
+    } catch (error) {
+        return res.status(500).send({ error: error.message });
+    }
+});
+
+router.get('/categories/list', function (req, res, next) {
+    try {
+        res.json({
+            status: 'OK',
+            list: categories
         })
     } catch (error) {
         return res.status(500).send({ error: error.message });
