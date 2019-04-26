@@ -8,6 +8,7 @@ import saga from './sagas'
 import RouterApp from './router/RouterApp'
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css';
+import './assets/css/index.less'
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
