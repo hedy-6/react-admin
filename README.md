@@ -4,6 +4,36 @@
 
 主要技术：react, redux, redux-saga, react-router-dom等
 
+## 账号密码
+
+所有管理权限
+账号： admin@office.com 
+密码： 123456
+
+dashboard、 产品管理
+账号： sale@office.com
+密码： 123456
+
+dashboard、 hr管理
+账号： hr@office.com
+密码： 123456
+
+## 操作流程
+
+```
+git clone ...
+// 未安装需要安装包
+npm install 或 yarn
+yarn start
+// 启用 express 服务
+cd server/
+// server下没安装的也要install下
+npm install 或 yarn 
+yarn start
+```
+
+此外nginx配置见下方
+
 ## 具体介绍
 
 ### 1、基础配置部分
