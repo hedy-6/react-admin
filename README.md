@@ -157,6 +157,8 @@ npm install express-generator -g
 express --view=pug server
 ```
 
+**开发环境下**
+
 这里我在本地做了一个nginx代理，例如react项目启动端口是3000，express后台项目端口是8000，访问的时候访问端口9000，配置如下
 
 ```
@@ -171,6 +173,15 @@ server {
   }
 }
 ```
+
+**生产环境下**
+
+将react项目使用 ```yarn build```打包，将打包后的文件放到server目录下的某一个文件夹，并在server下的app.js中配置。（这里我放到了server/public/build下）这时就可以在express 服务端口访问项目。
+
+```
+app.use(express.static(path.join(__dirname, 'public/build')));
+```
+
 
 3. 使用 redux react-redux redux-saga
 

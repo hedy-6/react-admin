@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 var salesRouter = require('./routes/sales');
 
+var baseUrl = "/api";
+
 var app = express();
 
 // view engine setup
@@ -19,15 +21,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/build')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/dashboard', dashboardRouter);
-app.use('/sales', salesRouter);
+app.use(`${baseUrl}/users`, usersRouter);
+app.use(`${baseUrl}/dashboard`, dashboardRouter);
+app.use(`${baseUrl}/sales`, salesRouter);
 
 var routes = require('./datas/routes')
-app.get('/config/routes', function (req, res) {
+app.get(`${baseUrl}/config/routes`, function (req, res) {
   res.json({ status: 'OK', routes })
 })
 
