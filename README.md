@@ -4,6 +4,8 @@
 
 主要技术：react, redux, redux-saga, react-router-dom等
 
+[在线访问](http://114.116.188.178:3000/#/login)
+
 ## 账号密码
 
 所有管理权限
