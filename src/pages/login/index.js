@@ -19,7 +19,7 @@ class Login extends Component {
         }).then((data) => {
             if (data.status === "OK") {
                 this.props.loginSuccess(data.userInfo)
-                setCookie({ email, password })
+                setCookie({ email, password, token: password })
                 this.props.history.push('/main/dashboard')
             } else {
                 this.props.loginError(data)

@@ -46,7 +46,7 @@ class App extends Component {
       }).catch(error => {
         console.log(error);
         this.props.loginError(error)
-        message.error(error.msg || '获取用户信息失败');
+        message.error(error.message || '获取用户信息失败');
         this.props.history.push('/login')
       })
     } else {
@@ -68,7 +68,7 @@ class App extends Component {
       }
     }).catch(error => {
       console.log(error)
-      message.error(error.msg || '获取菜单失败')
+      message.error(error.message || '获取菜单失败')
     })
   }
 
